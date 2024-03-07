@@ -23,6 +23,12 @@ def clothing_category():
     return Category("Одежда", "Одежда и аксессуары", [tshirt, jeans])
 
 
+@pytest.fixture(autouse=True)
+def reset_category_counts():
+    Category.total_categories = 0
+    Category.total_unique_product = 0
+
+
 def test_category_init(category):
     assert category.name == 'Еда'
     assert category.description == 'Продукты питания на каждый день'

@@ -11,8 +11,10 @@ class Category:
         self.description = description
         self.products = products
 
+        unique_products = set(products)
+
         Category.total_categories += 1
-        Category.total_unique_product += len(products)
+        Category.total_unique_product += len(unique_products)
 
     def __str__(self):
         return f"{self.name} - {self.description}"
