@@ -12,7 +12,7 @@ def get_category():
     for objects in data:
         category = Category(objects['name'],
                             objects['description'],
-                            objects['products'])
+                            [product['name'] for product in objects['products']])
         categories.append(category)
 
     return categories
