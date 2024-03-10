@@ -9,6 +9,11 @@ def product():
 
 
 @pytest.fixture()
+def green_product():
+    return Product('Огурцы', 'Зеленые, хрустящие!', 70, 20)
+
+
+@pytest.fixture()
 def sample_product():
     return [
         Product('Чипсы', 'Новый вкус! Лук и барсук!', 120, 10),
@@ -17,7 +22,7 @@ def sample_product():
 
 
 def test_product_str(product):
-    assert product.__str__() == 'Филе куриное - Филе курицы, очищенное - 300'
+    assert product.__str__() == "Филе куриное, 300 руб. Остаток: 15"
 
 
 def test_product_init(product):
@@ -28,7 +33,7 @@ def test_product_init(product):
 
 
 def test_product_price_get(product):
-    assert product.product_price == f"Цена товара: 300 руб."
+    assert product.product_price == "Филе куриное, 300 руб. Остаток: 15"
 
 
 def test_product_price_zero(product, capsys):
@@ -86,3 +91,7 @@ def test_create_product_price(sample_product):
     assert new_product.description == "Новый вкус! Лук и барсук!"
     assert new_product.price == 120
     assert new_product.quantity == 12
+
+
+def test_sum_product_count(product, green_product):
+    assert product.__add__(green_product) == 5900

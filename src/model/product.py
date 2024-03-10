@@ -11,11 +11,11 @@ class Product:
         self.quantity = quantity
 
     def __str__(self):
-        return f"{self.name} - {self.description} - {self.price}"
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity}"
 
     @property
     def product_price(self):
-        return f"Цена товара: {self.price} руб."
+        return f"{self.name}, {self.price} руб. Остаток: {self.quantity}"
 
     @product_price.setter
     def product_price(self, price: float):
@@ -38,3 +38,6 @@ class Product:
                     price = product.price
 
         return cls(name, description, price, quantity)
+
+    def __add__(self, other):
+        return self.price * self.quantity + other.price * other.quantity

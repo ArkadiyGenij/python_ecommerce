@@ -28,4 +28,7 @@ class Category:
             return f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт."
 
     def __str__(self):
-        return f"{self.name} - {self.description}"
+        return f"{self.name}, количество продуктов: {len(self.products)}"
+
+    def __len__(self):
+        return len(self.products)

@@ -33,7 +33,7 @@ def reset_category_counts():
 
 
 def test_str_func(food_category):
-    assert food_category.__str__() == "Еда - Продукты питания на каждый день"
+    assert food_category.__str__() == "Еда, количество продуктов: 2"
 
 
 def test_category_init(food_category):
@@ -57,3 +57,7 @@ def test_add_product_in_products(product, food_category):
 
 def test_product_list(food_category):
     assert food_category.product_list == "Морковь, 70 руб. Остаток: 15 шт."
+
+
+def test_len_product_list(food_category):
+    assert food_category.__len__() == 2
