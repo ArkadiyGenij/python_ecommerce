@@ -1,12 +1,15 @@
 import pytest
 
-from model.category import Category
-from model.product import Product
+from src.model.category import Category
+from src.model.product import Product
+from tests.test_product import product
 
 
 @pytest.fixture()
-def category():
-    return Category('Еда', 'Продукты питания на каждый день', ['Морковь', 'Лук', 'Гречка'])
+def food_category():
+    carrot = Product("Морковь", "Оранжевая и очень вкусная!", 70, 15)
+    onion = Product("Лук", "Не очень вкусный, но очень полезный!", 30, 50)
+    return Category('Еда', 'Продукты питания на каждый день', [carrot, onion])
 
 
 @pytest.fixture()
@@ -29,10 +32,14 @@ def reset_category_counts():
     Category.total_unique_product = 0
 
 
-def test_category_init(category):
-    assert category.name == 'Еда'
-    assert category.description == 'Продукты питания на каждый день'
-    assert category.products == ['Морковь', 'Лук', 'Гречка']
+def test_str_func(food_category):
+    assert food_category.__str__() == "Еда - Продукты питания на каждый день"
+
+
+def test_category_init(food_category):
+    assert food_category.name == 'Еда'
+    assert food_category.description == 'Продукты питания на каждый день'
+    assert food_category.products == [food_category.products[0], food_category.products[1]]
 
 
 def test_category_total_count(electronics_category, clothing_category):
@@ -41,3 +48,12 @@ def test_category_total_count(electronics_category, clothing_category):
 
 def test_unique_product_count(electronics_category, clothing_category):
     assert Category.total_unique_product == 4
+
+
+def test_add_product_in_products(product, food_category):
+    food_category.add_product(product)
+    assert product in food_category.products
+
+
+def test_product_list(food_category):
+    assert food_category.product_list == "Морковь, 70 руб. Остаток: 15 шт."

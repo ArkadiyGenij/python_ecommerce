@@ -1,8 +1,9 @@
 import json
-from model.category import Category
-from model.product import Product
 
-with open('../products.json', 'r', encoding='utf-8') as file:
+from src.model.category import Category
+from src.model.product import Product
+
+with open('../../products.json', 'r', encoding='utf-8') as file:
     data = json.load(file)
 
 
