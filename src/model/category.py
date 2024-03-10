@@ -1,7 +1,10 @@
+from src.model.product import Product
+
+
 class Category:
     name: str
     description: str
-    products: list
+    __products: list
 
     total_categories = 0
     total_unique_product = 0
@@ -15,6 +18,14 @@ class Category:
 
         Category.total_categories += 1
         Category.total_unique_product += len(unique_products)
+
+    def add_product(self, product: Product):
+        self.products.append(product)
+
+    @property
+    def product_list(self):
+        for product in self.products:
+            return f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт."
 
     def __str__(self):
         return f"{self.name} - {self.description}"
