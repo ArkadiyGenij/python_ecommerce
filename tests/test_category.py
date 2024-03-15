@@ -39,7 +39,8 @@ def test_str_func(food_category):
 def test_category_init(food_category):
     assert food_category.name == 'Еда'
     assert food_category.description == 'Продукты питания на каждый день'
-    assert food_category.products == [food_category.products[0], food_category.products[1]]
+    assert food_category.get_products[0] == food_category.get_products[0]
+    assert food_category.get_products[1] == food_category.get_products[1]
 
 
 def test_category_total_count(electronics_category, clothing_category):
@@ -52,7 +53,7 @@ def test_unique_product_count(electronics_category, clothing_category):
 
 def test_add_product_in_products(product, food_category):
     food_category.add_product(product)
-    assert product in food_category.products
+    assert product in food_category.get_products
 
 
 def test_product_list(food_category):

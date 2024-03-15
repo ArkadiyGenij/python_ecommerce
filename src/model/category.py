@@ -12,7 +12,7 @@ class Category:
     def __init__(self, name, description, products):
         self.name = name
         self.description = description
-        self.products = products
+        self.__products = products
 
         unique_products = set(products)
 
@@ -20,15 +20,19 @@ class Category:
         Category.total_unique_product += len(unique_products)
 
     def add_product(self, product: Product):
-        self.products.append(product)
+        self.__products.append(product)
 
     @property
     def product_list(self):
-        for product in self.products:
+        for product in self.__products:
             return f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт."
 
+    @property
+    def get_products(self):
+        return self.__products
+
     def __str__(self):
-        return f"{self.name}, количество продуктов: {len(self.products)}"
+        return f"{self.name}, количество продуктов: {len(self.__products)}"
 
     def __len__(self):
-        return len(self.products)
+        return len(self.__products)
