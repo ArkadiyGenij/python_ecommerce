@@ -3,6 +3,7 @@ import pytest
 from src.model.category import Category
 from src.model.product import Product
 from tests.test_product import product
+from tests.test_lawn_grass import lawn_grass_green
 
 
 @pytest.fixture()
