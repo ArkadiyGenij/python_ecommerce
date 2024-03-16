@@ -20,7 +20,10 @@ class Category:
         Category.total_unique_product += len(unique_products)
 
     def add_product(self, product: Product):
-        self.__products.append(product)
+        if isinstance(product, Product):
+            self.__products.append(product)
+        else:
+            raise TypeError
 
     @property
     def product_list(self):
