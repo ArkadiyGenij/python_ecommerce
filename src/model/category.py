@@ -1,7 +1,8 @@
+from src.model.object_creation_mixin import ObjectCreationMixin
 from src.model.product import Product
 
 
-class Category:
+class Category(ObjectCreationMixin):
     name: str
     description: str
     __products: list
@@ -9,10 +10,11 @@ class Category:
     total_categories = 0
     total_unique_product = 0
 
-    def __init__(self, name, description, products):
+    def __init__(self, name, description, products, *args, **kwargs):
         self.name = name
         self.description = description
         self.__products = products
+        super().__init__(*args, **kwargs)
 
         unique_products = set(products)
 

@@ -1,3 +1,4 @@
+from src.model.object_creation_mixin import ObjectCreationMixin
 from src.model.product import Product
 
 
