@@ -38,13 +38,7 @@ class Product(Base, ObjectCreationMixin):
                 print("Обновление цены отменено.")
 
     @classmethod
-    def create_product(cls, name, description, price, quantity, products):
-        for product in products:
-            if product.name == name:
-                quantity += product.quantity
-                if product.price > price:
-                    price = product.price
-
+    def create_product(cls, name, description, price, quantity):
         return cls(name, description, price, quantity)
 
     def __add__(self, other):
