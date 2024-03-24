@@ -9,3 +9,8 @@ class Base(ABC):
     @abstractmethod
     def product_price(self):
         pass
+
+    @classmethod
+    @abstractmethod
+    def create_product(cls, name, description, price, quantity):
+        pass
