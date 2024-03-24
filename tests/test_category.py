@@ -63,3 +63,12 @@ def test_product_list(food_category):
 
 def test_len_product_list(food_category):
     assert food_category.__len__() == 2
+
+
+def test_average_price_empty_category():
+    empty_category = Category('Пустая категория', 'Товаров нет', [])
+    assert empty_category.average_price() == 0
+
+
+def test_average_price_food_category(food_category):
+    assert food_category.average_price() == (70 + 30) / 2

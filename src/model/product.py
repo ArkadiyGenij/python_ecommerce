@@ -9,6 +9,12 @@ class Product(Base, ObjectCreationMixin):
     quantity: int
 
     def __init__(self, name, description, price, quantity, *args, **kwargs):
+        try:
+            if quantity <= 0:
+                raise ValueError("Товар с нулевым количеством не может быть добавлен.")
+        except ValueError as e:
+            print(e)
+            raise e
         self.name = name
         self.description = description
         self.price = price

@@ -1,3 +1,4 @@
+from src.exception.zero_quantity_error import ZeroQuantityError
 from src.model.object_creation_mixin import ObjectCreationMixin
 from src.model.product import Product
 
@@ -22,6 +23,17 @@ class Category(ObjectCreationMixin):
         Category.total_unique_product += len(unique_products)
 
     def add_product(self, product: Product):
+        try:
+            if product.quantity <= 0:
+                raise ZeroQuantityError("Товар с нулевым количеством не может быть добавлен.")
+        except ZeroQuantityError as e:
+            print(e)
+        else:
+            self.__products.append(product)
+            print("Товар успешно добавлен.")
+        finally:
+            print("Обработка добавления товара завершена.")
+
         if isinstance(product, Product):
             self.__products.append(product)
         else:
@@ -41,3 +53,11 @@ class Category(ObjectCreationMixin):
 
     def __len__(self):
         return len(self.__products)
+
+    def average_price(self):
+        try:
+            total_price = sum(product.price for product in self.__products)
+            average_price = total_price / len(self.__products)
+            return average_price
+        except ZeroDivisionError:
+            return 0
